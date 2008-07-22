@@ -1,0 +1,19 @@
+Active SMS Generator
+
+Description:
+    The SMS generator creates stubs for a new SMS model.
+    
+    The generator takes an SMS model name and a list of SMS methods as
+    arguments.  The model name may be given in CamelCase or under_score.
+    
+    The generator creates an SMS model class in app/models and a test suite
+    with fixtures in test/unit.
+    
+Example:
+    ./script/generate sms Notifier signup forgot_password
+    
+    This will create a Nofier SMS class:
+        Model:     app/models/notifier.rb
+        Test:      test/unit/notifier_test.rb
+        Fixtures:  test/fixtures/notifier/signup
+                   test/fixtures/notifier/forgot_password
