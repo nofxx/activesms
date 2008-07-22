@@ -53,7 +53,8 @@ require 'activesms/version'
 # Require the supported gateways connection adapters.
 require 'activesms/connection_adapters/abstract_adapter'
 require 'activesms/connection_adapters/bulk_sms_adapter'
-require 'activesms/connection_adapters/clickatell_adapter'
+require 'activesms/connection_adapters/clickatell_adapter' 
+require 'activesms/connection_adapters/human_adapter'  
 # Simplewire requires jruby
 if RUBY_PLATFORM =~ /java/
   require 'activesms/connection_adapters/simplewire_adapter'
