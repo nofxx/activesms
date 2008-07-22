@@ -185,6 +185,7 @@ module ActiveSms #:nodoc:
         raise e if raise_delivery_errors
       end
       
+      logger.info "SMS Sent! #{Time.now}"
       return sms
     end
     

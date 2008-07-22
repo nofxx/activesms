@@ -1,6 +1,11 @@
-#require 'net/http'
-#require 'uri'
-#require 'erb'
+# #
+# Human Gateway Adapter (www.human.com.br)
+# 
+# Original code: Cassio Marques
+# Merge with activesms: Marcos Piccinini
+#
+# 07/2008
+#
 require 'activesms/connection_adapters/abstract_adapter'
 
 module ActiveSms
@@ -14,39 +19,24 @@ module ActiveSms
     class HumanAdapter < AbstractAdapter
     
       SERVICE_HOST = "system.human.com.br"
-      SERVICE_PATH = "GatewayIntegration/msgSms.do"
+      SERVICE_PATH = "GatewayIntegration/msgSms.do" 
+      SERVICE_PORT = "8080"                           
+      SERVICE_TYPE = 'E'                              
+      SERVICE_DISPATCH = 'send'
       
       # Create an adapter for the Human gateway.
       #
       # Options:
       #
-      # * <tt>:dispatch</tt>
       # * <tt>:account</tt>
       # * <tt>:code</tt>
       # * <tt>use_ssl</tt>
-      
-# Classe responsavel por realizar o envio das mensagens SMS. 
-# O envio eh realizado atraves de uma requisicao HTTP utilizando
-# metodo POST.
-#class SmsSender
-  
-  # As configuracoes para envio. Utiliza as mesmas configuracoes
-  # para todas as instancias desta classe
-  #@@config = nil
-  
-  #attr_reader :total_sent
-    
       def initialize(logger = nil, config = {})    
         super(logger)
         @config = config.dup
-        
-         
-        human_scheme = 'http' #config[:use_ssl] ? 'https' : 'http'
-        @service_url = "#{human_scheme}://#{SERVICE_HOST}/#{SERVICE_PATH}"
-        #raise_not_configured_exception unless @@config && !@@config.empty?
-        #@messages = []
-        #@results = {}  
-        #@total_sent = 0
+ 
+        human_scheme = config[:use_ssl] ? 'https' : 'http'
+        @service_url = "#{human_scheme}://#{SERVICE_HOST}:#{SERVICE_PORT}/#{SERVICE_PATH}"
       end 
       
       # Return the human readable name of the gateway adapter name.
@@ -56,22 +46,37 @@ module ActiveSms
       
       def deliver(sms)
         params = {                 
-          :dispatch => @config[:dispatch],
-          :account  => @config[:user],
+          :dispatch => SERVICE_DISPATCH,
+          :type     => SERVICE_TYPE,
+          :account  => @config[:account],
           :code     => @config[:code],
-       #   :id       => sms.id,
           :to       => sms.recipients,
           :from     => sms.from,#@config[:from]
-          :msg      => sms.body,
+          :msg      => sms.body,      
+          :id       => sms.id,        
           :schedule => sms.schedule
         }
         send_http_request(@service_url, params)
       end     
       
+      
     end    
   end
-end
+end     
+            
 
+# def initialize(logger = nil, config = {})    
+#   super(logger)
+#   @config = config.dup
+# 
+#   human_scheme = config[:use_ssl] ? 'https' : 'http'
+#   @service_url = "#{human_scheme}://#{SERVICE_HOST}:#{SERVICE_PORT}/#{SERVICE_PATH}"
+#   #raise_not_configured_exception unless @@config && !@@config.empty?
+#   #@messages = []
+#   #@results = {}  
+#   #@total_sent = 0
+# end          
+            #attr_reader :total_sent  
   # Define as configuracoes que serao utilizadas para realizar o envio
   # das mensagens.
   # #
