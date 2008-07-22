@@ -1,6 +1,6 @@
 == SMS Brasil
 
-Baseado no ActiveSMS (http://rubyforge.org/projects/activesms/) esse projeto visa manter e adicionar gateways brasileiros.
+Baseado no ActiveSMS (http://rubyforge.org/projects/activesms) esse projeto visa facilitar o envio de mensagens SMS para operadoras de telefonia celular do Brasil, utilizando serviços de gateway de envio.   
 
 == Gateways suportados
 
