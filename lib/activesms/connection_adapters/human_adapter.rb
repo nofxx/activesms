@@ -53,8 +53,8 @@ module ActiveSms
           :to       => sms.recipients,
           :from     => sms.from,#@config[:from]
           :msg      => sms.body,      
-          :id       => sms.id,        
-          :schedule => sms.schedule
+        #  :id       => sms.id,        
+         # :schedule => sms.schedule
         }
         send_http_request(@service_url, params)
       end     
