@@ -112,7 +112,13 @@ module ActiveSms #:nodoc:
     adv_attr_accessor :subject
     
     # The content of the message.
-    adv_attr_accessor :body
+    adv_attr_accessor :body     
+    
+    # The ID of the message.
+    adv_attr_accessor :id
+    
+    # Schedule for delivery
+    adv_attr_accessor :schedule
     
     # The Sms message object instance referenced by this model.
     attr_reader :sms
@@ -201,7 +207,9 @@ module ActiveSms #:nodoc:
         sms = Sms.new
         sms.recipients = recipients
         sms.from = from
-        sms.body = body      
+        sms.body = body
+        sms.id = id
+        sms.schedule = schedule      
         @sms = sms
       end
     

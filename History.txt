@@ -2,4 +2,10 @@
 
 * 1 major enhancement
 
-  * Birthday!
+  * Birthday! (ActiveSMS fork)
+  
+=== 0.7.7 / 2008-07-22
+
+* 1 major enhancement
+
+  * Human Gateway Support Added

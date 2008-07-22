@@ -42,8 +42,13 @@ module ActiveSms
       # Return the human readable name of the gateway adapter name.
       def adapter_name
         return 'Human'
-      end   
-      
+      end 
+        
+      # Deliver the message!
+      # :id => Reference to the message on human servers.
+      #  so we can check status later
+      # :schedule =>  expects a Date/Timestamp object
+      #  if date is on the past message is immeditaly sent
       def deliver(sms)
         params = {                 
           :dispatch => SERVICE_DISPATCH,
@@ -51,10 +56,10 @@ module ActiveSms
           :account  => @config[:account],
           :code     => @config[:code],
           :to       => sms.recipients,
-          :from     => sms.from,#@config[:from]
+          :from     => sms.from || @config[:from],
           :msg      => sms.body,      
-        #  :id       => sms.id,        
-         # :schedule => sms.schedule
+          :id       => sms.id,        
+          :schedule => sms.schedule.to_date_format_human
         }
         send_http_request(@service_url, params)
       end     

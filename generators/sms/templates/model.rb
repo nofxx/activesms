@@ -5,6 +5,8 @@ class <%= class_name %> < ActiveSms::Base
     @recipients = ''
     @from       = ''
     @body       = "<%= class_name %>#<%= action %>"
+    @id         = '' 
+    @schedule   = "dd/mm/aaaa hh:mm:ss"
     @options    = {}
   end
 <% end -%>
