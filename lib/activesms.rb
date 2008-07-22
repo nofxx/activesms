@@ -41,6 +41,16 @@ unless defined?(ActionController)
     require 'rubygems'
     require_gem 'actionpack', '>= 1.12.5'
   end
+end    
+
+# Require ActionMailer to perform mail gateway deliveries
+unless defined?(ActionMailer)
+  begin
+    require 'action_mailer'
+  rescue LoadError
+    require 'rubygems'
+    require_gem 'actionmailer', '>= 1.12.5'
+  end
 end
 
 # Require base classes.
@@ -54,7 +64,9 @@ require 'activesms/version'
 require 'activesms/connection_adapters/abstract_adapter'
 require 'activesms/connection_adapters/bulk_sms_adapter'
 require 'activesms/connection_adapters/clickatell_adapter' 
-require 'activesms/connection_adapters/human_adapter'  
+require 'activesms/connection_adapters/human_adapter'
+require 'activesms/connection_adapters/email_adapter'    
+
 # Simplewire requires jruby
 if RUBY_PLATFORM =~ /java/
   require 'activesms/connection_adapters/simplewire_adapter'

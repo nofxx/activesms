@@ -1,10 +1,11 @@
 CHANGELOG
+History.txt
 LICENSE
 MIT-LICENSE
 Manifest.txt
-History.txt
 README.txt
 Rakefile
+generators/config/smsconfig.yml
 generators/sms/USAGE
 generators/sms/sms_generator.rb
 generators/sms/templates/fixture.rhtml
@@ -17,8 +18,9 @@ lib/activesms/base.rb
 lib/activesms/connection_adapters/abstract_adapter.rb
 lib/activesms/connection_adapters/bulk_sms_adapter.rb
 lib/activesms/connection_adapters/clickatell_adapter.rb
+lib/activesms/connection_adapters/email_adapter.rb  
+lib/activesms/connection_adapters/human_adapter.rb  
 lib/activesms/connection_adapters/simplewire_adapter.rb
-lib/activesms/connection_adapters/human_adapter.rb
 lib/activesms/connections.rb
 lib/activesms/exceptions.rb
 lib/activesms/sms.rb
