@@ -1,0 +1,55 @@
+h1. ActiveSms
+
+h2. What
+
+Active SMS is a framework for creating and sending SMS messages.
+
+h2. Installing
+
+<pre syntax="ruby">sudo gem install activesms</pre>
+
+h2. Demonstration of usage
+
+TBD.
+
+h2. API Documentation
+
+Check out the "rdocs.":http://activesms.rubyforge.org/rdoc/
+
+h2. Supported Gateways
+
+Active SMS will require a valid account from a third party SMS gateway to
+send or receive SMS messages.  The following gateways are currently supported:
+
+* BulkSMS[http://www.bulksms.com]
+* Clickatell[http://www.clickatell.com]
+* Simplewire[http://www.simplewire.com] (requires jruby)
+
+Not all features are supported by all gateways.
+
+h3. Simplewire Configuration
+
+* Make sure you are using jruby
+* Make sure swsms.jar is in your classpath (Download at: "http://www.simplewire.com/developers/sdk/java/":http://www.simplewire.com/developers/sdk/java/)
+* Add the following configuration code to the rails environment.
+
+<pre syntax="ruby">
+ActiveSms::Base.establish_connection(
+     :adapter  => "simplewire",
+     :subscriber_id => "id",
+     :subscriber_password => "password"
+   )
+   
+</pre>
+
+h2. Forum
+
+"http://rubyforge.org/forum/?group_id=2923":http://rubyforge.org/forum/?group_id=2923
+
+h2. License
+
+This code is free to use under the terms of the MIT license. 
+
+h2. Support
+
+You can find the Active SMS RubyForge page at "http://rubyforge.org/projects/activesms":http://rubyforge.org/projects/activesms.

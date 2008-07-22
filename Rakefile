@@ -89,35 +89,35 @@ CHANGES = hoe.paragraphs_of('CHANGELOG', 0..1).join("\n\n")
 PATH    = (RUBYFORGE_PROJECT == GEM_NAME) ? RUBYFORGE_PROJECT : "#{RUBYFORGE_PROJECT}/#{GEM_NAME}"
 hoe.remote_rdoc_dir = File.join(PATH.gsub(/^#{RUBYFORGE_PROJECT}\/?/,''), 'rdoc')
 
-# desc 'Generate website files'
-# task :website_generate do
-#   Dir['website/**/*.txt'].each do |txt|
-#     sh %{ ruby scripts/txt2html #{txt} > #{txt.gsub(/txt$/,'html')} }
-#   end
-# end     
+desc 'Generate website files'
+task :website_generate do
+  Dir['website/**/*.txt'].each do |txt|
+    sh %{ ruby scripts/txt2html #{txt} > #{txt.gsub(/txt$/,'html')} }
+  end
+end     
 
-# desc 'Upload website files to rubyforge'
-# task :website_upload do
-#   host = "#{rubyforge_username}@rubyforge.org"
-#   remote_dir = "/var/www/gforge-projects/#{PATH}/"
-#   local_dir = 'website'
-#   sh %{rsync -aCv #{local_dir}/ #{host}:#{remote_dir}}
-# end
-# 
-# desc 'Generate and upload website files'
-# task :website => [:website_generate, :website_upload, :publish_docs]
-# 
-# desc 'Release the website and new gem version'
-# task :deploy => [:check_version, :website, :release] do
-#   puts "Remember to create SVN tag:"
-#   puts "svn copy svn+ssh://#{rubyforge_username}@rubyforge.org/var/svn/#{PATH}/trunk " +
-#     "svn+ssh://#{rubyforge_username}@rubyforge.org/var/svn/#{PATH}/tags/REL-#{VERS} "
-#   puts "Suggested comment:"
-#   puts "Tagging release #{CHANGES}"
-# end             
+desc 'Upload website files to rubyforge'
+task :website_upload do
+  host = "#{rubyforge_username}@rubyforge.org"
+  remote_dir = "/var/www/gforge-projects/#{PATH}/"
+  local_dir = 'website'
+  sh %{rsync -aCv #{local_dir}/ #{host}:#{remote_dir}}
+end
 
-# > desc 'Runs tasks website_generate and install_gem as a local deployment of the gem'
-# > task :local_deploy => [:website_generate, :install_gem]    
+desc 'Generate and upload website files'
+task :website => [:website_generate, :website_upload, :publish_docs]
+
+desc 'Release the website and new gem version'
+task :deploy => [:check_version, :website, :release] do
+  puts "Remember to create SVN tag:"
+  puts "svn copy svn+ssh://#{rubyforge_username}@rubyforge.org/var/svn/#{PATH}/trunk " +
+    "svn+ssh://#{rubyforge_username}@rubyforge.org/var/svn/#{PATH}/tags/REL-#{VERS} "
+  puts "Suggested comment:"
+  puts "Tagging release #{CHANGES}"
+end             
+
+desc 'Runs tasks website_generate and install_gem as a local deployment of the gem'
+task :local_deploy => [:website_generate, :install_gem]     
 
 task :check_version do
   unless ENV['VERSION']
