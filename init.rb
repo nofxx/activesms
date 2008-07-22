@@ -1,4 +1,4 @@
 require 'rubygems'
 require 'activesms'
 #TODO: check out if we are in rails
-ActiveSms::Base.logger = RAILS_DEFAULT_LOGGER
+ActiveSms::Base.logger = RAILS_DEFAULT_LOGGER rescue nil
