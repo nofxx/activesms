@@ -1,0 +1,12 @@
+# Configuracao para envio de mensagens SMS, de acordo com 
+# especificacoes no Manual de Integracao ao Human Gateway
+dispatch: send
+type: E
+callbackOption: 1 
+base_url: system.human.com.br
+port: 8080
+path: /GatewayIntegration/msgSms.do
+account: xxxxxx
+password: xxxxxxxxx
+from: FULANO DE TAL S/A
+
