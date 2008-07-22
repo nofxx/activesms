@@ -5,17 +5,26 @@ require 'activesms/connection_adapters/abstract_adapter'
 
 module ActiveSms
   class Base
-    def self.human_sms_connection(config) #:nodoc:
-      return ConnectionAdapters::HumanSmsAdapter.new(logger, config)
+    def self.human_connection(config) #:nodoc:
+      return ConnectionAdapters::HumanAdapter.new(logger, config)
     end
   end
   
   module ConnectionAdapters
-    class HumanSmsAdapter < AbstractAdapter
+    class HumanAdapter < AbstractAdapter
     
       SERVICE_HOST = "system.human.com.br"
       SERVICE_PATH = "GatewayIntegration/msgSms.do"
-
+      
+      # Create an adapter for the Human gateway.
+      #
+      # Options:
+      #
+      # * <tt>:dispatch</tt>
+      # * <tt>:account</tt>
+      # * <tt>:code</tt>
+      # * <tt>use_ssl</tt>
+      
 # Classe responsavel por realizar o envio das mensagens SMS. 
 # O envio eh realizado atraves de uma requisicao HTTP utilizando
 # metodo POST.
@@ -27,12 +36,12 @@ module ActiveSms
   
   #attr_reader :total_sent
     
-      def initialize  
+      def initialize(logger = nil, config = {})    
         super(logger)
         @config = config.dup
         
          
-        human_scheme = config[:use_ssl] ? 'https' : 'http'
+        human_scheme = 'http' #config[:use_ssl] ? 'https' : 'http'
         @service_url = "#{human_scheme}://#{SERVICE_HOST}/#{SERVICE_PATH}"
         #raise_not_configured_exception unless @@config && !@@config.empty?
         #@messages = []
@@ -42,22 +51,23 @@ module ActiveSms
       
       # Return the human readable name of the gateway adapter name.
       def adapter_name
-        return 'HumanBrasil'
+        return 'Human'
       end   
       
       def deliver(sms)
         params = {                 
           :dispatch => @config[:dispatch],
           :account  => @config[:user],
-          :code     => @config[:password],
-          :id       => sms.id,
+          :code     => @config[:code],
+       #   :id       => sms.id,
           :to       => sms.recipients,
           :from     => sms.from,#@config[:from]
           :msg      => sms.body,
           :schedule => sms.schedule
         }
         send_http_request(@service_url, params)
-      end
+      end     
+      
     end    
   end
 end
