@@ -104,9 +104,13 @@ module ActiveSms #:nodoc:
     
     @@deliveries = []
     cattr_accessor :deliveries
-       
+     
+    # Method to deliver :gateway or :email  
     adv_attr_accessor :delivery  
-    adv_attr_accessor :carrier
+
+    # If email we should have a carrier
+    adv_attr_accessor :carrier         
+    
     # The recipient numbers for the message, either as a string (for a single
     # recipient) or an array (for multiple recipientipients).
     adv_attr_accessor :recipients
@@ -189,7 +193,7 @@ module ActiveSms #:nodoc:
     # alternate has been give as the prameter, this will fail.
     def deliver!(sms = @sms) #:nodoc:
       raise "no SMS object available for delivery!" unless sms
-      logger.info "Sending SMS: #{sms}" unless logger.nil?
+      logger.info "Sending SMS: #{sms} via #{sms.delivery}" unless logger.nil?
       
       begin
         send("perform_delivery_#{sms.delivery}", sms) if perform_deliveries
@@ -210,6 +214,7 @@ module ActiveSms #:nodoc:
       end
     
       def create_sms
+        raise SmsException unless body && recipients
         sms = Sms.new
         sms.delivery = delivery 
         sms.carrier = carrier if carrier
@@ -217,12 +222,7 @@ module ActiveSms #:nodoc:
         sms.from = from
         sms.body = body
         sms.id = id if id
-        sms.schedule = schedule if schedule
-         
-        # #
-        # Change delivery mode
-        #@@delivery_method = sms.delivery || :email      
-        
+        sms.schedule = schedule if schedule 
         @sms = sms
       end
     
@@ -235,9 +235,7 @@ module ActiveSms #:nodoc:
         #raise ConnectionNotEstablished unless email
         deliver_sms(sms) 
       end
-      
-
-          
+ 
       def perform_delivery_test(sms)
         deliveries << sms
       end

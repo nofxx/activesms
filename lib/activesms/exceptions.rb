@@ -22,6 +22,10 @@ module ActiveSms #:nodoc:
   
   # Problems with email carriers
   class CarrierException < ActiveSmsError
+  end  
+  
+  # Blank message
+  class SmsException < ActiveSmsError
   end
   
 end

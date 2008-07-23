@@ -17,9 +17,9 @@ class SmsGenerator < Rails::Generator::NamedBase
                                             class_path,
                                             "#{file_name}_test.rb")
        
-      m.template "smsconfig.yml", File.join('config',
+      m.template "sms.yml", File.join('config',
                                             class_path,
-                                            "smsconfig.yml") 
+                                            "sms.yml") 
                                      
       # Create fixture for each action.
       actions.each do |action|

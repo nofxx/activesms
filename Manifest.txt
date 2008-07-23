@@ -11,7 +11,7 @@ generators/sms/USAGE
 generators/sms/sms_generator.rb
 generators/sms/templates/fixture.rhtml
 generators/sms/templates/model.rb
-generators/sms/templates/smsconfig.yml
+generators/sms/templates/sms.yml
 generators/sms/templates/unit_test.rb
 init.rb
 lib/activesms.rb
