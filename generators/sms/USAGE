@@ -10,10 +10,10 @@ Description:
     with fixtures in test/unit.
     
 Example:
-    ./script/generate sms Notifier signup forgot_password
+    ./script/generate sms Notifier signup:email forgot_password:gateway
     
     This will create a Nofier SMS class:
-        Config:    config/smsconfig.yml
+        Config:    config/sms.yml
         Model:     app/models/notifier.rb
         Test:      test/unit/notifier_test.rb
         Fixtures:  test/fixtures/notifier/signup

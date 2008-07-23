@@ -8,11 +8,13 @@
 * 1 major enhancement
   * Human Gateway Support Added
   
-=== 0.8.0 / 2008-07-23
+=== 0.8.7 / 2008-07-23
 
 * 1 major enhancement
   * Added email adapter
 
-* 2 minor enhancement
+* 3 minor enhancement
   * Updated gem stuff (newgem)
-  * Added gemspec 
+  * Added gemspec
+  * Updated generators
+ 

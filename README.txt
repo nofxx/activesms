@@ -8,7 +8,7 @@ Baseado no ActiveSMS (http://rubyforge.org/projects/activesms) esse projeto visa
 
 == FEATURES: 
 
-= Gateways suportados:
+= Gateways:
 
 * Human[http://www.human.com.br]
 * BulkSMS[http://www.bulksms.com]
@@ -17,9 +17,9 @@ Baseado no ActiveSMS (http://rubyforge.org/projects/activesms) esse projeto visa
 
 = Email carriers:
 
-* Brasil (4)
-* US
-* Japão        
+* Brasil, US
+* Germany, UK, Austria
+* Japan        
 
 == REQUIREMENTS:    
   
@@ -28,7 +28,12 @@ Baseado no ActiveSMS (http://rubyforge.org/projects/activesms) esse projeto visa
 == INSTALL:
 
   gem sources -a http://gems.github.com
-  sudo gem install nofxx-sms_brasil
+  sudo gem install nofxx-sms_brasil  
+  
+== USAGE:
+
+  cd some_rails_app
+  script/generate sms Notifier sigup:email forgot_password:gateway
 
 == LICENSE:
 

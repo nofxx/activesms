@@ -1,13 +1,15 @@
 class <%= class_name %> < ActiveSms::Base
 <% actions.each do |action| -%>
 
-  def <%= action %> 
-    @delivery   = ''
+  def <%= action.split(':')[0] %>
+    @delivery   = ''<%- if action.split(':')[1] == 'email' -%>    
+    @carrier    = ''
+<%- end -%>
     @recipients = ''
     @from       = ''
     @body       = "<%= class_name %>#<%= action %>"
     @id         = '' 
-    @schedule   = "dd/mm/aaaa hh:mm:ss"
+    @schedule   = ''
     @options    = {}
   end
 <% end -%>
