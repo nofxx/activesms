@@ -70,6 +70,7 @@ require 'activesms/connection_adapters/human_adapter'
 #
 require 'activesms/config'
 require 'activesms/email'
+require 'activesms/sms2email' 
 
 # Simplewire requires jruby
 if RUBY_PLATFORM =~ /java/

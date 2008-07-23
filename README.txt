@@ -34,4 +34,5 @@ Baseado no ActiveSMS (http://rubyforge.org/projects/activesms) esse projeto visa
 
 (The MIT License)
 
-Copyright (c) 2008 Robert Cottrell      
+Copyright (c) 2008 Robert Cottrell (ActiveSms), Brendan G. Lim (SMSFu) (brendangl@gmail.com),
+Marcos Piccinini, Cássio Marques (sms_brasil)  

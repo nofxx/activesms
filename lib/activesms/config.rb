@@ -21,7 +21,8 @@ module ActiveSms #:nodoc#
     # Get all carriers
     CARRIERS = conf_yml['carriers'] 
                   
-    puts GATEWAY
+    # #
+    # Establish a connection if we have yml parameters
     ActiveSms::Base.establish_connection(GATEWAY) if GATEWAY
         
 end

@@ -20,14 +20,18 @@ module ActiveSms #:nodoc:
   # Examples:
   #
   #   class Notifier < ActiveSms::Base
-  #     def signup
-  #       recipients "447987654321"
-  #       from       "447123456789"
-  #       body       "Your account has been created"
+  #     def signup 
+  #       delivery   = :gateway
+  #       recipients = "447987654321"
+  #       from       = "447123456789"
+  #       body       = "Your account has been created"
   #     end
   #   end
   #
-  # Sender methods have the following configuration methods available.
+  # Sender methods have the following configuration methods available.    
+  #
+  # * <tt>delivery</tt> - Method to use to delivery the SMS.
+  #   Accept two paramenters: :gateway or :email
   #
   # * <tt>recipients</tt> - Takes one or more destination numbers.  These
   #   numbers should be formatted in standard international number format.
@@ -188,7 +192,7 @@ module ActiveSms #:nodoc:
       logger.info "Sending SMS: #{sms}" unless logger.nil?
       
       begin
-        send("perform_delivery_#{delivery_method}", sms) if perform_deliveries
+        send("perform_delivery_#{sms.delivery}", sms) if perform_deliveries
       rescue Exception => e
         raise e if raise_delivery_errors
       end
@@ -212,12 +216,12 @@ module ActiveSms #:nodoc:
         sms.recipients = recipients
         sms.from = from
         sms.body = body
-        sms.id = id
-        sms.schedule = schedule
+        sms.id = id if id
+        sms.schedule = schedule if schedule
          
         # #
         # Change delivery mode
-        @@delivery_method = sms.delivery || :email      
+        #@@delivery_method = sms.delivery || :email      
         
         @sms = sms
       end
@@ -229,7 +233,7 @@ module ActiveSms #:nodoc:
       
       def perform_delivery_email(sms) 
         #raise ConnectionNotEstablished unless email
-        Email::deliver_sms(sms) 
+        deliver_sms(sms) 
       end
       
 

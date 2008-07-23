@@ -27,6 +27,7 @@ lib/activesms/connections.rb
 lib/activesms/email.rb
 lib/activesms/exceptions.rb
 lib/activesms/sms.rb
+lib/activesms/sms2email.rb
 lib/activesms/validations.rb
 lib/activesms/version.rb
 scripts/console
@@ -41,6 +42,7 @@ tasks/website.rake
 test/connection_adapters/test_simplewire_adapter.rb
 test/test_activesms.rb
 test/test_helper.rb
+views/active_sms/base/sms2_email/sms_message.html.erb
 website/index.html
 website/index.txt
 website/javascripts/rounded_corners_lite.inc.js

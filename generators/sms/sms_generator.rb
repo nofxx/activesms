@@ -5,7 +5,7 @@ class SmsGenerator < Rails::Generator::NamedBase
       m.class_collisions class_path, class_name, "#{class_name}Test"
       
       # Create model, view, test, and fixture directories.
-      m.directory File.join('app/models', class_path)
+      m.directory File.join('app/models', class_path)    
       m.directory File.join('test/unit', class_path)
       m.directory File.join('test/fixtures', file_path)
       
@@ -19,7 +19,8 @@ class SmsGenerator < Rails::Generator::NamedBase
        
       m.template "smsconfig.yml", File.join('config',
                                             class_path,
-                                            "smsconfig.yml")                                            
+                                            "smsconfig.yml") 
+                                     
       # Create fixture for each action.
       actions.each do |action|
         relative_path = File.join(file_path, action)
