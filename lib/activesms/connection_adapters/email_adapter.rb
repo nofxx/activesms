@@ -2,7 +2,7 @@ require 'activesms/connection_adapters/abstract_adapter'
 
 module ActiveSms
   class Base
-    def self.human_connection(config) #:nodoc:
+    def self.email_connection(config) #:nodoc:
       return ConnectionAdapters::EmailAdapter.new(logger, config)
     end
   end
@@ -10,7 +10,19 @@ module ActiveSms
   module ConnectionAdapters
     class EmailAdapter < AbstractAdapter
                
-
+      # Create an adapter for the Email gateway.
+      #
+      # Options:
+      # * <tt>:region</tt>
+      # * <tt>:username</tt>
+      # * <tt>:password</tt>
+      def initialize(logger = nil, config = {})
+        super(logger)
+        @config = config.dup
+        
+        host = @config#SERVICE_HOSTS[config[:carrier]] || SERVICE_HOSTS[:uk]
+        @service_url = "#{}http://#{host}"
+      end
 
     end
   end

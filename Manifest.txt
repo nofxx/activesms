@@ -18,8 +18,8 @@ lib/activesms/base.rb
 lib/activesms/connection_adapters/abstract_adapter.rb
 lib/activesms/connection_adapters/bulk_sms_adapter.rb
 lib/activesms/connection_adapters/clickatell_adapter.rb
-lib/activesms/connection_adapters/email_adapter.rb  
-lib/activesms/connection_adapters/human_adapter.rb  
+lib/activesms/connection_adapters/email_adapter.rb
+lib/activesms/connection_adapters/human_adapter.rb
 lib/activesms/connection_adapters/simplewire_adapter.rb
 lib/activesms/connections.rb
 lib/activesms/exceptions.rb
@@ -28,6 +28,7 @@ lib/activesms/validations.rb
 lib/activesms/version.rb
 scripts/txt2html
 setup.rb
+sms_brasil.gemspec
 test/connection_adapters/test_simplewire_adapter.rb
 test/test_activesms.rb
 test/test_helper.rb

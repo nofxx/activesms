@@ -42,6 +42,12 @@ module ActiveSms
       # Return the human readable name of the gateway adapter name.
       def adapter_name
         return 'Human'
+      end
+      
+      # Formats the data object to what human gateway expects
+      def date_format_human(date)      
+        date = Time.parse(date, Time.now.utc) unless date.responds_to?('strftime') 
+        date.strftime("%d/%m/%Y %H:%M:%S")
       end 
         
       # Deliver the message!
@@ -59,7 +65,7 @@ module ActiveSms
           :from     => sms.from || @config[:from],
           :msg      => sms.body,      
           :id       => sms.id,        
-          :schedule => sms.schedule.to_date_format_human
+          :schedule => date_format_human(sms.schedule)
         }
         send_http_request(@service_url, params)
       end     
