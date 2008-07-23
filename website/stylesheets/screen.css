@@ -1,5 +1,5 @@
 body {
-  background-color: #fff;
+  background-color: #E1D1F1;
   font-family: "Georgia", sans-serif;
   font-size: 16px;
   line-height: 1.6em;
@@ -23,8 +23,8 @@ li {
   list-style-type: square;
 }
 a {
-/*  color: #5E5AFF;*/
-/*  background-color: #DAC;*/
+  color: #5E5AFF;
+	background-color: #DAC;
   font-weight: normal;
   text-decoration: underline;
 }

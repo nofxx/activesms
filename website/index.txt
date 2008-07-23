@@ -1,55 +1,83 @@
-h1. ActiveSms
+h1. test
+
+h1. &#x2192; 'test'
+
 
 h2. What
 
-Active SMS is a framework for creating and sending SMS messages.
 
 h2. Installing
 
-<pre syntax="ruby">sudo gem install activesms</pre>
+<pre syntax="ruby">sudo gem install test</pre>
+
+h2. The basics
+
 
 h2. Demonstration of usage
 
-TBD.
 
-h2. API Documentation
-
-Check out the "rdocs.":http://activesms.rubyforge.org/rdoc/
-
-h2. Supported Gateways
-
-Active SMS will require a valid account from a third party SMS gateway to
-send or receive SMS messages.  The following gateways are currently supported:
-
-* BulkSMS[http://www.bulksms.com]
-* Clickatell[http://www.clickatell.com]
-* Simplewire[http://www.simplewire.com] (requires jruby)
-
-Not all features are supported by all gateways.
-
-h3. Simplewire Configuration
-
-* Make sure you are using jruby
-* Make sure swsms.jar is in your classpath (Download at: "http://www.simplewire.com/developers/sdk/java/":http://www.simplewire.com/developers/sdk/java/)
-* Add the following configuration code to the rails environment.
-
-<pre syntax="ruby">
-ActiveSms::Base.establish_connection(
-     :adapter  => "simplewire",
-     :subscriber_id => "id",
-     :subscriber_password => "password"
-   )
-   
-</pre>
 
 h2. Forum
 
-"http://rubyforge.org/forum/?group_id=2923":http://rubyforge.org/forum/?group_id=2923
+"http://groups.google.com/group/test":http://groups.google.com/group/test
+
+TODO - create Google Group - test
+
+h2. How to submit patches
+
+Read the "8 steps for fixing other people's code":http://drnicwilliams.com/2007/06/01/8-steps-for-fixing-other-peoples-code/ and for section "8b: Submit patch to Google Groups":http://drnicwilliams.com/2007/06/01/8-steps-for-fixing-other-peoples-code/#8b-google-groups, use the Google Group above.
+
+TODO - pick SVN or Git instructions
+
+The trunk repository is <code>svn://rubyforge.org/var/svn/test/trunk</code> for anonymous access.
+
+OOOORRRR
+
+You can fetch the source from either:
+
+<% if rubyforge_project_id %>
+
+* rubyforge: "http://rubyforge.org/scm/?group_id=<%= rubyforge_project_id %>":http://rubyforge.org/scm/?group_id=<%= rubyforge_project_id %>
+
+<pre>git clone git://rubyforge.org/test.git</pre>
+
+<% else %>
+
+* rubyforge: MISSING IN ACTION
+
+TODO - You can not created a RubyForge project, OR have not run <code>rubyforge config</code>
+yet to refresh your local rubyforge data with this projects' id information.
+
+When you do this, this message will magically disappear!
+
+Or you can hack website/index.txt and make it all go away!!
+
+<% end %>
+
+* github: "http://github.com/GITHUB_USERNAME/test/tree/master":http://github.com/GITHUB_USERNAME/test/tree/master
+
+<pre>git clone git://github.com/GITHUB_USERNAME/test.git</pre>
+
+
+TODO - add "github_username: username" to ~/.rubyforge/user-config.yml and newgem will reuse it for future projects.
+
+
+* gitorious: "git://gitorious.org/test/mainline.git":git://gitorious.org/test/mainline.git
+
+<pre>git clone git://gitorious.org/test/mainline.git</pre>
+
+h3. Build and test instructions
+
+<pre>cd test
+rake test
+rake install_gem</pre>
+
 
 h2. License
 
 This code is free to use under the terms of the MIT license. 
 
-h2. Support
+h2. Contact
 
-You can find the Active SMS RubyForge page at "http://rubyforge.org/projects/activesms":http://rubyforge.org/projects/activesms.
+Comments are welcome. Send an email to "FIXME full name":mailto:FIXME email via the "forum":http://groups.google.com/group/test
+
