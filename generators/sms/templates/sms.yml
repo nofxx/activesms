@@ -1,46 +1,88 @@
 # #         
 # GENERAL
+# 
 #
 config:
   from_address: noreply@domain.com
           
 # #
 # GATEWAYS
-#  
-
-gateway:
-  adapter: human
-  callbackOption: 1 
-  account: xxxxxx
-  password: xxxxxxxxx 
-# #
+#
+# Uncomment the gateways you wish to use:
+  
 # HUMAN (human.com.br)
 #
-# Configuracao para envio de mensagens SMS, de acordo com 
-# especificacoes no Manual de Integracao ao Human Gateway
-#
-#  adapter: human
-#  callbackOption: 1 
-#  account: xxxxxx
-#  password: xxxxxxxxx
+# gateway:
+#   adapter: human
+#   callbackOption: 1 
+#   account: xxxxxx
+#   password: xxxxxxxxx
 
-# #
 # CLICKATELL (clickatell.com)
 #  
-#  adapter: clickatell
-#  user: beavis
-#  pass: xxxxxx
+# gateway:
+#   adapter: clickatell
+#   user: beavis
+#   pass: xxxxxx
 
 # #
 # EMAIL 2 SMS CARRIERS
-#
+#   
+# Please share if you know more carriers
+# http://github.com/nofxx/sms_brasil
 carriers:
+   # #
    # Brasil 
    claro: @clarotorpedo.com.br 
    tim: @tim.com.br
    oi: @sms.oi.com.br
    vivo: @vivomail.com.br 
-   # US Carriers
+   # #
+   # Germany
+   e-plus-germany: @smsmail.eplus.de
+   o2-germany: @o2online.de 
+   t-mobile-germany: @t-d1-sms.de
+   vodafone-germany: @vodafone-sms.de
+   # #
+   # Canada
+   fido-canada: @fido.ca
+   # #
+   # Netherlands
+   orange-netherlands: @sms.orange.nl
+   # #
+   # Austria
+   t-mobile-austria: @sms.t-mobile.at
+   # #
+   # Italy
+   vodafone-italy: @sms.vodafone.it
+   # #
+   # Japan
+   vodafone-jp-chuugoku: @n.vodafone.ne.jp
+   vodafone-jp-hokkaido: @d.vodafone.ne.jp
+   vodafone-jp-hokuriko: @r.vodafone.ne.jp
+   vodafone-jp-kansai: @k.vodafone.ne.jp
+   vodafone-jp-osaka: @k.vodafone.ne.jp
+   vodafone-jp-kanto: @k.vodafone.ne.jp
+   vodafone-jp-koushin: @k.vodafone.ne.jp
+   vodafone-jp-tokyo: @k.vodafone.ne.jp
+   vodafone-jp-kyuushu: @q.vodafone.ne.jp
+   vodafone-jp-okinawa: @q.vodafone.ne.jp
+   vodafone-jp-shikoku: @s.vodafone.ne.jp
+   vodafone-jp-touhoku: @h.vodafone.ne.jp
+   vodafone-jp-niigata: @h.vodafone.ne.jp
+   vodafone-jp-toukai: @h.vodafone.ne.jp 
+   # #
+   # Spain
+   vodafone-spain: @vodafone.es    
+   telefonica-spain: @movistar.net
+   # #
+   # UK 
+   orange-uk: @orange.net 
+   o2-uk: @mmail.co.uk      
+   vodafone-uk: @sms.vodafone.net
+   t-mobile-uk: @t-mobile.uk.net 
+   # #
+   # US
    alltell: @message.alltell.com
    ameritech: @paging.acswireless.com  
    at&t: @txt.att.net
@@ -58,33 +100,4 @@ carriers:
    suncom: @tms.suncom.com
    t-mobile: @tmomail.net
    virgin: @vmobl.net
-   verizon: @vtext.com
-   # International Carriers
-   e-plus-germany: @smsmail.eplus.de
-   fido-canada: @fido.ca
-   o2-germany: @o2online.de
-   o2-uk: @mmail.co.uk
-   orange-netherlands: @sms.orange.nl
-   orange-uk: @orange.net
-   t-mobile-austria: @sms.t-mobile.at
-   t-mobile-germany: @t-d1-sms.de
-   t-mobile-uk: @t-mobile.uk.net
-   telefonica-spain: @movistar.net
-   vodafone-germany: @vodafone-sms.de
-   vodafone-uk: @sms.vodafone.net
-   vodafone-italy: @sms.vodafone.it
-   vodafone-jp-chuugoku: @n.vodafone.ne.jp
-   vodafone-jp-hokkaido: @d.vodafone.ne.jp
-   vodafone-jp-hokuriko: @r.vodafone.ne.jp
-   vodafone-jp-kansai: @k.vodafone.ne.jp
-   vodafone-jp-osaka: @k.vodafone.ne.jp
-   vodafone-jp-kanto: @k.vodafone.ne.jp
-   vodafone-jp-koushin: @k.vodafone.ne.jp
-   vodafone-jp-tokyo: @k.vodafone.ne.jp
-   vodafone-jp-kyuushu: @q.vodafone.ne.jp
-   vodafone-jp-okinawa: @q.vodafone.ne.jp
-   vodafone-jp-shikoku: @s.vodafone.ne.jp
-   vodafone-jp-touhoku: @h.vodafone.ne.jp
-   vodafone-jp-niigata: @h.vodafone.ne.jp
-   vodafone-jp-toukai: @h.vodafone.ne.jp
-   vodafone-spain: @vodafone.es    
+   verizon: @vtext.com    

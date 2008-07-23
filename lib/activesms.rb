@@ -1,5 +1,6 @@
 #
-# Copyright (c) 2007 Robert Cottrell
+# Copyright (c) 2008 Robert Cottrell, Brendan G. Lim (brendangl@gmail.com),
+#                    Marcos Piccinini, Cássio Marques
 #
 # Permission is hereby granted, free of charge, to any person obtaining
 # a copy of this software and associated documentation files (the
@@ -67,10 +68,10 @@ require 'activesms/connection_adapters/bulk_sms_adapter'
 require 'activesms/connection_adapters/clickatell_adapter'
 require 'activesms/connection_adapters/human_adapter'
                          
-#
+# Require global config
 require 'activesms/config'
+# These ppl need global config:
 require 'activesms/email'
-require 'activesms/sms2email' 
 
 # Simplewire requires jruby
 if RUBY_PLATFORM =~ /java/

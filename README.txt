@@ -33,7 +33,7 @@ Baseado no ActiveSMS (http://rubyforge.org/projects/activesms) esse projeto visa
 == USAGE:
 
   cd some_rails_app
-  script/generate sms Notifier sigup:email forgot_password:gateway
+  script/generate sms Notifier signup:email forgot_password:gateway signoff:human
 
 == LICENSE:
 

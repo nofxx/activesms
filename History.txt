@@ -17,4 +17,9 @@
   * Updated gem stuff (newgem)
   * Added gemspec
   * Updated generators
+  
+=== 0.8.8 / 2008-07-23
+
+* 1 minor enhancement
+  * Generator support ":type" ie.: signup:human
  

@@ -5,7 +5,9 @@
 # Merge with activesms: Marcos Piccinini
 #
 # 07/2008
-#
+#  
+# Configuracao para envio de mensagens SMS, de acordo com 
+# especificacoes no Manual de Integracao ao Human Gateway
 require 'activesms/connection_adapters/abstract_adapter'
 
 module ActiveSms
@@ -22,7 +24,8 @@ module ActiveSms
       SERVICE_PATH = "GatewayIntegration/msgSms.do" 
       SERVICE_PORT = "8080"                           
       SERVICE_TYPE = 'E'                              
-      SERVICE_DISPATCH = 'send'
+      SERVICE_DISPATCH = 'send' 
+      #  callbackOption: 1   
       
       # Create an adapter for the Human gateway.
       #
