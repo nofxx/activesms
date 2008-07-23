@@ -1,7 +1,8 @@
 class <%= class_name %> < ActiveSms::Base
 <% actions.each do |action| -%>
 
-  def <%= action %>
+  def <%= action %> 
+    @delivery   = ''
     @recipients = ''
     @from       = ''
     @body       = "<%= class_name %>#<%= action %>"

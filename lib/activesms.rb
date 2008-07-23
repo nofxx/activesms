@@ -57,7 +57,7 @@ end
 # Require base classes.
 require 'activesms/version'
 require 'activesms/base'
-require 'activesms/connections'
+require 'activesms/connections' 
 require 'activesms/exceptions'
 require 'activesms/version'
 
@@ -66,7 +66,10 @@ require 'activesms/connection_adapters/abstract_adapter'
 require 'activesms/connection_adapters/bulk_sms_adapter'
 require 'activesms/connection_adapters/clickatell_adapter'
 require 'activesms/connection_adapters/human_adapter'
-require 'activesms/connection_adapters/email_adapter'
+                         
+#
+require 'activesms/config'
+require 'activesms/email'
 
 # Simplewire requires jruby
 if RUBY_PLATFORM =~ /java/

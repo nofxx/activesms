@@ -1,31 +1,85 @@
-require 'activesms/connection_adapters/abstract_adapter'
+module ActiveSms #:nodoc#
+    
+  module Email
+    #@@email = nil
+    
+     
+    @config ||= CONFIG
+    @@carriers ||= CARRIERS
 
-module ActiveSms
-  class Base
-    def self.email_connection(config) #:nodoc:
-      return ConnectionAdapters::EmailAdapter.new(logger, config)
+    def self.carriers
+      @@carriers.dup
     end
-  end
-  
-  module ConnectionAdapters
-    class EmailAdapter < AbstractAdapter
-               
-      # Create an adapter for the Email gateway.
-      #
-      # Options:
-      # * <tt>:region</tt>
-      # * <tt>:username</tt>
-      # * <tt>:password</tt>
-      def initialize(logger = nil, config = {})
-        super(logger)
-        @config = config.dup
-        
-        host = @config#SERVICE_HOSTS[config[:carrier]] || SERVICE_HOSTS[:uk]
-        @service_url = "#{}http://#{host}"
+
+    def self.deliver_sms(sms)#number,carrier,message,options={})
+
+      number = sms.recipients
+      carrier = sms.carrier
+      number = format_number(number)
+      # raise SMSFuException.new("Cannot deliver an empty message to #{number}") if message.nil? or message.empty?
+
+      #options[:limit] ||= message.length
+      #message = message[0..options[:limit]-1]
+      sms_email = determine_sms_email(format_number(number),carrier)
+
+      Sms2Email.deliver_sms_message(sms_email,message)
+      rescue CarrierException => exception
+        raise exception       
+    end                                                   
+       
+    # def get_sms_address(number,carrier)
+    #   number = format_number(number)
+    #   determine_sms_email(number,carrier)
+    # end    
+
+    private
+
+    def format_number(number)
+      pre_formatted = number.gsub("-","").strip
+      formatted =  (pre_formatted.length == 11 && pre_formatted[0,1] == "1") ? pre_formatted[1..pre_formatted.length] : pre_formatted
+         
+      #return is_valid?(formatted) ? formatted : (raise SMSFuException.new("Phone number (#{number}) is not formatted correctly"))
+    end   
+    # 
+    # def is_valid?(number)
+    #   return (number.length >= 10 && number[/^.\d+$/]) ? true : false
+    # end  
+         
+    def determine_sms_email(phone_number, carrier)
+      if CARRIERS.has_key?(sms.carrier.downcase)
+        "#{phone_number}#{CARRIERS[sms.carrier.downcase]}"
+      else 
+        raise CarrierException.new("Specified carrier, #{carrier} is not supported.")
       end
-
     end
-  end
+     
+  end   
+     
+
+  class Sms2Mail < ActionMailer::Base
+     
+    @@from_address = CONFIG['from_address']
+    cattr_accessor :from_address 
+     
+     
+    def sms_message(recipient, message)
+      content_type      "text/plain"
+      recipients        recipient
+      from              from_address
+
+      body['message'] = message
+    end
+
+    view_path = File.join(File.dirname(__FILE__), '..', 'views')
+    if public_methods.include?('append_view_path')
+      self.append_view_path view_path
+    elsif public_methods.include?("view_paths")
+      self.view_paths << view_path
+    else
+      self.template_root = view_path
+    end   
+                                           
+  end    
 end
 
 

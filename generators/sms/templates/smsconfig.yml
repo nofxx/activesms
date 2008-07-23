@@ -1,37 +1,45 @@
 # #         
-# CONFIGS
+# GENERAL
 #
 config:
   from_address: noreply@domain.com
           
 # #
 # GATEWAYS
-#
+#  
+
+gateway:
+  adapter: human
+  callbackOption: 1 
+  account: xxxxxx
+  password: xxxxxxxxx 
+# #
 # HUMAN (human.com.br)
+#
 # Configuracao para envio de mensagens SMS, de acordo com 
 # especificacoes no Manual de Integracao ao Human Gateway
-human:
-  dispatch: send
-  type: E
-  callbackOption: 1 
-  base_url: system.human.com.br
-  port: 8080
-  path: /GatewayIntegration/msgSms.do
-  account: xxxxxx
-  password: xxxxxxxxx
-  from: FULANO DE TAL S/A
+#
+#  adapter: human
+#  callbackOption: 1 
+#  account: xxxxxx
+#  password: xxxxxxxxx
+
+# #
+# CLICKATELL (clickatell.com)
+#  
+#  adapter: clickatell
+#  user: beavis
+#  pass: xxxxxx
 
 # #
 # EMAIL 2 SMS CARRIERS
 #
-carriers: 
-   # #  
+carriers:
    # Brasil 
    claro: @clarotorpedo.com.br 
    tim: @tim.com.br
    oi: @sms.oi.com.br
-   vivo: @vivomail.com.br
- 
+   vivo: @vivomail.com.br 
    # US Carriers
    alltell: @message.alltell.com
    ameritech: @paging.acswireless.com  

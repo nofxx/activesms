@@ -1,5 +1,7 @@
 module ActiveSms
-  class Sms
+  class Sms  
+    attr_accessor :delivery
+    attr_accessor :carrier
     attr_accessor :recipients
     attr_accessor :from
     attr_accessor :body

@@ -18,6 +18,10 @@ module ActiveSms #:nodoc:
   # No connection has been established.  Use <tt>establish_connection</tt>
   # before sending a message.
   class ConnectionNotEstablished < ActiveSmsError
+  end     
+  
+  # Problems with email carriers
+  class CarrierException < ActiveSmsError
   end
   
 end

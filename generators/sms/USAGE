@@ -13,6 +13,7 @@ Example:
     ./script/generate sms Notifier signup forgot_password
     
     This will create a Nofier SMS class:
+        Config:    config/smsconfig.yml
         Model:     app/models/notifier.rb
         Test:      test/unit/notifier_test.rb
         Fixtures:  test/fixtures/notifier/signup

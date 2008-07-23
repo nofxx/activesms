@@ -100,7 +100,9 @@ module ActiveSms #:nodoc:
     
     @@deliveries = []
     cattr_accessor :deliveries
-    
+       
+    adv_attr_accessor :delivery  
+    adv_attr_accessor :carrier
     # The recipient numbers for the message, either as a string (for a single
     # recipient) or an array (for multiple recipientipients).
     adv_attr_accessor :recipients
@@ -191,7 +193,7 @@ module ActiveSms #:nodoc:
         raise e if raise_delivery_errors
       end
       
-      #logger.info "SMS Sent! #{Time.now}"
+      logger.info "SMS Sent!" unless logger.nil?
       return sms
     end
     
@@ -205,18 +207,32 @@ module ActiveSms #:nodoc:
     
       def create_sms
         sms = Sms.new
+        sms.delivery = delivery 
+        sms.carrier = carrier if carrier
         sms.recipients = recipients
         sms.from = from
         sms.body = body
         sms.id = id
-        sms.schedule = schedule      
+        sms.schedule = schedule
+         
+        # #
+        # Change delivery mode
+        @@delivery_method = sms.delivery || :email      
+        
         @sms = sms
       end
     
       def perform_delivery_gateway(sms)
         raise ConnectionNotEstablished unless connection
         connection.deliver(sms)
+      end 
+      
+      def perform_delivery_email(sms) 
+        #raise ConnectionNotEstablished unless email
+        Email::deliver_sms(sms) 
       end
+      
+
           
       def perform_delivery_test(sms)
         deliveries << sms
