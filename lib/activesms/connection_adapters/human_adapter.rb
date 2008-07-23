@@ -30,7 +30,7 @@ module ActiveSms
       #
       # * <tt>:account</tt>
       # * <tt>:code</tt>
-      # * <tt>use_ssl</tt>
+      # * <tt>use_ssl (human does not support this as July/2008)</tt> 
       def initialize(logger = nil, config = {})    
         super(logger)
         @config = config.dup
@@ -64,9 +64,14 @@ module ActiveSms
           :to       => sms.recipients,
           :from     => sms.from || @config[:from],
           :msg      => sms.body,      
-          :id       => sms.id,        
-          :schedule => date_format_human(sms.schedule)
-        }
+          :id       => sms.id,
+        }              
+        
+        if sms.schedule 
+          human_schedule = date_format_human(sms.schedule)
+          params << { :schedule => human_schedule }
+        end 
+        
         send_http_request(@service_url, params)
       end     
       
