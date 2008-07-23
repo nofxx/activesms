@@ -1,19 +1,21 @@
 require 'activesms/version'
 
-AUTHOR = 'FIXME full name'  # can also be an array of Authors
-EMAIL = "FIXME email"
-DESCRIPTION = "description of gem"
-GEM_NAME = 'test' # what ppl will type to install your gem
+AUTHOR = ['Robert Cottrell', 'Ben Curren', 'Dean Mao']  # can also be an array of Authors
+EMAIL = ['rgcottrell@rubyforge.org', 'ben@esomnie.com', 'dean@esomnie.com']
+DESCRIPTION = "Active SMS is a framework for sending and receiving SMS messages"
+GEM_NAME = 'activesms' # what ppl will type to install your gem
 RUBYFORGE_PROJECT = 'activesms' # The unix name for your project
 HOMEPATH = "http://#{RUBYFORGE_PROJECT}.rubyforge.org"
 DOWNLOAD_PATH = "http://rubyforge.org/projects/#{RUBYFORGE_PROJECT}"
+
+
 EXTRA_DEPENDENCIES = [
 #  ['activesupport', '>= 1.3.1']
 ]    # An array of rubygem dependencies [name, version]
 
 @config_file = "~/.rubyforge/user-config.yml"
 @config = nil
-RUBYFORGE_USERNAME = "unknown"
+RUBYFORGE_USERNAME = "nofxx"
 def rubyforge_username
   unless @config
     begin
@@ -30,17 +32,16 @@ Run 'rubyforge setup' to prepare your env for access to Rubyforge
   RUBYFORGE_USERNAME.replace @config["username"]
 end
 
-
 REV = nil
 # UNCOMMENT IF REQUIRED:
 # REV = YAML.load(`svn info`)['Revision']
 VERS = ActiveSms::VERSION::STRING + (REV ? ".#{REV}" : "")
-RDOC_OPTS = ['--quiet', '--title', 'test documentation',
+RDOC_OPTS = ['--quiet', '--title', 'activesms documentation',
     "--opname", "index.html",
     "--line-numbers",
     "--main", "README",
-    "--inline-source"]
-
+    "--inline-source"]    
+    
 class Hoe
   def extra_deps
     @extra_deps.reject! { |x| Array(x).first == 'hoe' }
@@ -51,7 +52,11 @@ end
 # Generate all the Rake tasks
 # Run 'rake -T' to see list of generated tasks (from gem root directory)
 $hoe = Hoe.new(GEM_NAME, VERS) do |p|
-  p.developer(AUTHOR, EMAIL)
+  # bug with hoe?
+  #p.developer(AUTHOR, EMAIL)
+  p.author = AUTHOR 
+  p.email = EMAIL
+  # <<
   p.description = DESCRIPTION
   p.summary = DESCRIPTION
   p.url = HOMEPATH
