@@ -191,6 +191,9 @@ module ActiveSms #:nodoc:
     # Delivers an Sms message object.  By default, it deliver the cached object
     # (from the #create! method).  If no cached object exists, and no
     # alternate has been give as the prameter, this will fail.
+    # 
+    # Mod to enable the user to choose between sending via gateway or email.
+    #
     def deliver!(sms = @sms) #:nodoc:
       raise "no SMS object available for delivery!" unless sms
       logger.info "Sending SMS: #{sms} via #{sms.delivery}" unless logger.nil?
@@ -215,14 +218,15 @@ module ActiveSms #:nodoc:
     
       def create_sms
         raise SmsException unless body && recipients
-        sms = Sms.new
-        sms.delivery = delivery 
-        sms.carrier = carrier if carrier
-        sms.recipients = recipients
-        sms.from = from
-        sms.body = body
+        sms = Sms.new({
+          :delivery   => delivery, 
+          :recipients => recipients,
+          :from       => from,
+          :body       => body    
+        })
         sms.id = id if id
-        sms.schedule = schedule if schedule 
+        sms.carrier = carrier if carrier        
+        sms.schedule = schedule if schedule
         @sms = sms
       end
     
@@ -233,7 +237,7 @@ module ActiveSms #:nodoc:
       
       def perform_delivery_email(sms) 
         #raise ConnectionNotEstablished unless email
-        deliver_sms(sms) 
+        email_deliver(sms) 
       end
  
       def perform_delivery_test(sms)

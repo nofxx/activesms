@@ -28,4 +28,7 @@ module ActiveSms #:nodoc:
   class SmsException < ActiveSmsError
   end
   
+  class PhoneNumberError < ActiveSmsError
+  end
+  
 end

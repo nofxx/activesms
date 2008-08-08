@@ -2,14 +2,11 @@ module ActiveSms
   class Base  
     class Sms2Email < ActionMailer::Base
 
-       @@from_address = CONFIG['from_address']
-       cattr_accessor :from_address 
 
-
-       def sms_message(recipient, message)
+       def sms_message(recipient, message, sender)
          content_type      "text/plain"
          recipients        recipient
-         from              from_address
+         from              sender
 
          body['message'] = message
        end

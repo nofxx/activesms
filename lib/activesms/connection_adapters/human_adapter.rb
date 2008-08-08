@@ -21,9 +21,11 @@ module ActiveSms
     class HumanAdapter < AbstractAdapter
       attr_reader :service_url
     
+      # As Human specification on 2008
       SERVICE_HOST = "system.human.com.br"
       SERVICE_PATH = "GatewayIntegration/msgSms.do" 
       SERVICE_PORT = "8080"                           
+      # Service options
       SERVICE_TYPE = 'E'                              
       SERVICE_DISPATCH = 'send' 
       #  callbackOption: 1   
@@ -55,7 +57,7 @@ module ActiveSms
       end 
         
       # Deliver the message!
-      # :id => Reference to the message on human servers.
+      # :id => Reference to the message on human servers.j
       #  so we can check status later
       # :schedule =>  expects a Date/Timestamp object
       #  if date is on the past message is immeditaly sent
@@ -71,11 +73,14 @@ module ActiveSms
           :id       => sms.id,
         }              
         
+        # Human supports scheduling
+        # if we got some date, share with em!
         if sms.schedule 
           human_schedule = date_format_human(sms.schedule)
           params << { :schedule => human_schedule }
         end 
         
+        # Send it!
         send_http_request(@service_url, params)
       end     
       
