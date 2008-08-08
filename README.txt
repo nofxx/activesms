@@ -34,6 +34,10 @@ Baseado no ActiveSMS (http://rubyforge.org/projects/activesms) esse projeto visa
 
   cd some_rails_app
   script/generate sms Notifier signup:email forgot_password:gateway signoff:human
+  
+  script/console
+  sms = Notifier.new_signup
+  Notifer.deliver(sms)
 
 == LICENSE:
 
