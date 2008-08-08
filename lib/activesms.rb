@@ -31,7 +31,7 @@ unless defined?(ActiveSupport)
     require 'active_support'
   rescue LoadError
     require 'rubygems'
-    require_gem 'activesupport'
+    require 'activesupport'
   end
 end
 
@@ -41,7 +41,7 @@ unless defined?(ActionController)
     require 'action_controller'
   rescue LoadError
     require 'rubygems'
-    require_gem 'actionpack', '>= 1.12.5'
+    require 'actionpack', '>= 1.12.5'
   end
 end    
 
@@ -51,7 +51,7 @@ unless defined?(ActionMailer)
     require 'action_mailer'
   rescue LoadError
     require 'rubygems'
-    require_gem 'actionmailer', '>= 1.12.5'
+    require 'actionmailer', '>= 1.12.5'
   end
 end
 

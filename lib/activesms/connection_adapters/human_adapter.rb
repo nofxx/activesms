@@ -19,6 +19,7 @@ module ActiveSms
   
   module ConnectionAdapters
     class HumanAdapter < AbstractAdapter
+      attr_reader :service_url
     
       SERVICE_HOST = "system.human.com.br"
       SERVICE_PATH = "GatewayIntegration/msgSms.do" 
@@ -49,7 +50,7 @@ module ActiveSms
       
       # Formats the data object to what human gateway expects
       def date_format_human(date)      
-        date = Time.parse(date, Time.now.utc) unless date.responds_to?('strftime') 
+        date = Time.parse(date, Time.now.utc) unless date.respond_to?('strftime') 
         date.strftime("%d/%m/%Y %H:%M:%S")
       end 
         
