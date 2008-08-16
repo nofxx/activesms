@@ -87,6 +87,7 @@ module ActiveSms #:nodoc:
   class Base
     include AdvAttrAccessor
     include ActionController::UrlWriter
+    include ActiveSms::Email
     
     @@logger = nil
     cattr_accessor :logger

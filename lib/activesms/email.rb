@@ -1,7 +1,7 @@
 require 'activesms/sms2email'  
 
 module ActiveSms #:nodoc#   
-  class Base
+#  class Base # testing
     module Email
     @config ||= CONFIG
     @@carriers ||= CARRIERS
@@ -56,5 +56,5 @@ module ActiveSms #:nodoc#
       end
     end     
   end
-  end   
+ # end   
 end
