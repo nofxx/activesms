@@ -87,7 +87,7 @@ module ActiveSms #:nodoc:
   class Base
     include AdvAttrAccessor
     include ActionController::UrlWriter
-    include ActiveSms::Email
+    include Email
     
     @@logger = nil
     cattr_accessor :logger
@@ -201,7 +201,7 @@ module ActiveSms #:nodoc:
       
       begin
         send("perform_delivery_#{sms.delivery}", sms) if perform_deliveries
-      rescue Exception => e
+      rescue Exception => e 
         raise e if raise_delivery_errors
       end
       

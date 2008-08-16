@@ -55,6 +55,11 @@ unless defined?(ActionMailer)
   end
 end
 
+# Require global config
+require 'activesms/config'
+# These ppl need global config:
+require 'activesms/email'
+
 # Require base classes.
 require 'activesms/version'
 require 'activesms/base'
@@ -68,10 +73,6 @@ require 'activesms/connection_adapters/bulk_sms_adapter'
 require 'activesms/connection_adapters/clickatell_adapter'
 require 'activesms/connection_adapters/human_adapter'
                          
-# Require global config
-require 'activesms/config'
-# These ppl need global config:
-require 'activesms/email'
 
 # Simplewire requires jruby
 if RUBY_PLATFORM =~ /java/

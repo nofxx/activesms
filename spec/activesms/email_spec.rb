@@ -1,24 +1,10 @@
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
-class Notifier < ActiveSms::Base
 
-  def maill
-    @delivery   = :email
-    @carrier    = 'tim' #
-    @recipients = '5543211234'
-    @from       = ''
-    @body       = "Nodsdsdsdster#emaio"
-    #@id         = '' 
-    #@schedule   = "dd/mm/aaaa hh:mm:ss"
-    @options    = {}
-  end
-end  
-
-
-describe ActiveSms::Base::Email do
+describe ActiveSms::Email do
   
   before(:each) do
-    @email = Notifier.new_maill
+    #@email = ActiveSms::Base::Notifier.new_mail
   end
   
   
