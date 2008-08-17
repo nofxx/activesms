@@ -220,12 +220,11 @@ module ActiveSms #:nodoc:
     
       def create_sms
         raise SmsException unless body && recipients
-        sms = Sms.new({
-          :delivery   => delivery, 
-          :recipients => recipients,
-          :from       => from,
-          :body       => body    
-        })
+        sms = Sms.new
+        sms.delivery = delivery
+        sms.recipients = recipients
+        sms.from = from
+        sms.body = body  
         sms.id = id if id
         sms.carrier = carrier if carrier        
         sms.schedule = schedule if schedule
