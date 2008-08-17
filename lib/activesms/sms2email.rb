@@ -1,5 +1,5 @@
 module ActiveSms
-  class Base  
+  #class Base  
     class Sms2Email < ActionMailer::Base
 
 
@@ -21,5 +21,5 @@ module ActiveSms
        end   
 
      end  
-   end
+ #  end
 end

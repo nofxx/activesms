@@ -2,18 +2,21 @@
 
 * http://github.com/nofxx/brasil_sms
 
+
 == DESCRIPTION:
 
 Baseado no ActiveSMS (http://rubyforge.org/projects/activesms) esse projeto visa facilitar o envio de mensagens SMS para operadoras de telefonia celular do Brasil, utilizando serviços de gateway de envio.   
+
 
 == FEATURES: 
 
 = Gateways:
 
-* Human[http://www.human.com.br]
 * BulkSMS[http://www.bulksms.com]
 * Clickatell[http://www.clickatell.com]
+* Human[http://www.human.com.br] 
 * Simplewire[http://www.simplewire.com] (requires jruby)
+
 
 = Email carriers:
 
@@ -21,14 +24,17 @@ Baseado no ActiveSMS (http://rubyforge.org/projects/activesms) esse projeto visa
 * Germany, UK, Austria
 * Japan        
 
+
 == REQUIREMENTS:    
   
 * ActionMailer (for email gateways)
   
+
 == INSTALL:
 
   gem sources -a http://gems.github.com
   sudo gem install nofxx-sms_brasil  
+
   
 == USAGE:
 
@@ -36,8 +42,9 @@ Baseado no ActiveSMS (http://rubyforge.org/projects/activesms) esse projeto visa
   script/generate sms Notifier signup:email forgot_password:gateway signoff:human
   
   script/console
-  sms = Notifier.new_signup
+  sms = Notifier.create_signup
   Notifer.deliver(sms)
+
 
 == LICENSE:
 

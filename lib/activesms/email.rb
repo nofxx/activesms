@@ -1,9 +1,9 @@
-require 'activesms/sms2email'  
+#require 'activesms/sms2email'  
 
 module ActiveSms #:nodoc#   
 #  class Base # testing
     module Email
-    @config ||= CONFIG
+   # @config ||= CONFIG
     @@carriers ||= CARRIERS
     @@from_address ||= CONFIG['from_address']
 

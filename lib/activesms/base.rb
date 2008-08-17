@@ -1,5 +1,6 @@
 require 'activesms/adv_attr_accessor'
 require 'activesms/sms'
+require 'activesms/sms2email'
 require 'net/https'
 
 module ActiveSms #:nodoc:
