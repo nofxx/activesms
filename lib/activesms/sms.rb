@@ -11,7 +11,5 @@ module ActiveSms
     def to_s
       "#<#{self.class.name} @recipients=#{recipients.inspect} @from=#{from.inspect} @body=#{body.inspect} @id=#{id.inspect} @schedule=#{schedule.inspect}>"
     end
-    
-
   end
 end

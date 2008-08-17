@@ -1,17 +1,13 @@
-#require 'activesms/sms2email'  
-
 module ActiveSms #:nodoc#   
-#  class Base # testing
-    module Email
+  module Email
    # @config ||= CONFIG
     @@carriers ||= CARRIERS
     @@from_address ||= CONFIG['from_address']
 
-    def carriers
-      @@carriers.dup
-    end
+    # def self.carriers
+    #   @@carriers.dup
+    # end
     
-
     def email_deliver(sms)#number,carrier,message,options={})
 
       number = sms.recipients
@@ -24,8 +20,8 @@ module ActiveSms #:nodoc#
       sms_email = determine_sms_email(number, carrier)#format_number(number),carrier)
        
       Sms2Email.deliver_sms_message(sms_email, sms.body, options[:from])
-      rescue CarrierException => exception
-        raise exception       
+    rescue CarrierException => e
+      raise e
     end                                                   
      
     def get_sms_address(number,carrier)
@@ -55,6 +51,5 @@ module ActiveSms #:nodoc#
         raise CarrierException.new("Specified carrier, #{carrier} is not supported.")
       end
     end     
-  end
- # end   
+  end   
 end

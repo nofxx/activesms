@@ -13,11 +13,11 @@ module SmsSpecHelper
     }
   end
 end
-describe ActiveSms::Sms do
+describe Sms do
   include SmsSpecHelper
 
   before(:each) do 
-    @sms = ActiveSms::Sms.new
+    @sms = Sms.new
   end
     
   it "should be a valid sms" do

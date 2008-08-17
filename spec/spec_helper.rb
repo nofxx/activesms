@@ -9,7 +9,7 @@ end
 $:.unshift(File.dirname(__FILE__) + '/../lib')
 $:.unshift(File.dirname(__FILE__) + '/../lib/activesms')
 require 'activesms'
-
+include ActiveSms
 
 # #
 # HELPERS
