@@ -1,32 +1,42 @@
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
 
-# class Noter < ActiveSms::Base
-# 
-#   def emaio 
-#     @delivery   = :email
-#     @carrier    = 'tim' #
-#     @recipients = '553555555'
-#     @from       = ''
-#     @body       = "Nodsdsdsdster#emaio"
-#     @options    = {}
-#   end
-# 
-#   def gatuei
-#     @delivery   = :gateway
-#     @recipients = '555555555'
-#     @from       = ''
-#     @body       = "ALOU ALOU"
-#     @options    = {}
-#   end
-# end
+class Noter < ActiveSms::Base
+
+  def emaio 
+    @delivery   = :email
+    @carrier    = 'tim' #
+    @recipients = '553555555'
+    @from       = ''
+    @body       = "Nodsdsdsdster#emaio"
+    @options    = {}
+  end
+
+  def gatuei
+    @delivery   = :gateway
+    @recipients = '555555555'
+    @from       = ''
+    @body       = "ALOU ALOU"
+    @options    = {}
+  end
+end
 
 describe Email do
   
   before(:each) do
-  # @email = Noter.new_emaio#Sms.new#.create_emaio#ActiveSms::Base#.stub!(:new_notifier)
+   @base = mock(Noter)
+   @email = ActiveSms::Base.new('noter')
+   #Sms.new#.create_emaio#ActiveSms::Base#.stub!(:new_notifier)
   end
   
+  
+  it "should deliver an sms" do
+    sms = mock(Sms, :recipients => 'x@xx.com', :body => 'hi', :id => 1,
+      :from => 'no@mail.com', :schedule => "08/08/2008 01:18:56")
+      Sms2Email.should_receive(:deliver_sms_message).with("some@mail.com", "hi", "Mr X").and_return(true)
+      @email.email_deliver(sms)
+   end
+   
   # it "should be valid" do
   #     violated unless @email
   #   end
@@ -57,9 +67,5 @@ describe Email do
   #     end
   #   end
   # 
-  it "should deliver an sms" do
-    @sms2email = mock(Sms2Email)
-    @sms2email.should_receive(:deliver_sms_message).with("some@mail.com", "hi", "Mr X").and_return(true)
-    @sms2email.deliver_sms_message("some@mail.com", "hi", "Mr X")
-   end
+
 end

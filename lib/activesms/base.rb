@@ -1,4 +1,4 @@
-require 'activesms/adv_attr_accessor'
+#require 'activesms/adv_attr_accessor'
 require 'activesms/sms'
 require 'activesms/sms2email'
 require 'net/https'
@@ -86,7 +86,7 @@ module ActiveSms #:nodoc:
   #   Active SMS with deliver_method :test.  Most useful for unit and functional
   #   testing.
   class Base
-    include AdvAttrAccessor
+    include ActionMailer::AdvAttrAccessor
     include ActionController::UrlWriter
     include Email
     
