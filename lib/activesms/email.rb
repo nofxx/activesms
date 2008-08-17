@@ -4,9 +4,9 @@ module ActiveSms #:nodoc#
     @@carriers ||= CARRIERS
     @@from_address ||= CONFIG['from_address']
 
-    # def self.carriers
-    #   @@carriers.dup
-    # end
+    def carriers
+      @@carriers.dup
+    end
     
     def email_deliver(sms)#number,carrier,message,options={})
 
@@ -15,11 +15,11 @@ module ActiveSms #:nodoc#
       # number = format_number(number)
 
       #options[:limit] ||= message.length
-      options[:from]  ||= @@from_address
+        #options[:from]  ||= @@from_address
       #message = message[0..options[:limit]-1]
       sms_email = determine_sms_email(number, carrier)#format_number(number),carrier)
        
-      Sms2Email.deliver_sms_message(sms_email, sms.body, options[:from])
+      Sms2Email.deliver_sms_message(sms_email, sms.body, @@from_address)
     rescue CarrierException => e
       raise e
     end                                                   
@@ -43,7 +43,7 @@ module ActiveSms #:nodoc#
     end  
        
     def determine_sms_email(phone_number, carrier)
-      carrier = carrier.downcase     
+      carrier = carrier.to_s.downcase     
 
       if carriers.has_key?(carrier)
         "#{phone_number}#{carriers[carrier]}"

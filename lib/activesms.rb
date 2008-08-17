@@ -55,13 +55,9 @@ unless defined?(ActionMailer)
   end
 end
 
-# Require global config
 require 'activesms/config'
-# These ppl need global config:
+# Email need config first
 require 'activesms/email'
-
-# Require base classes.
-require 'activesms/version'
 require 'activesms/base'
 require 'activesms/connections' 
 require 'activesms/exceptions'
@@ -73,6 +69,9 @@ require 'activesms/connection_adapters/bulk_sms_adapter'
 require 'activesms/connection_adapters/clickatell_adapter'
 require 'activesms/connection_adapters/human_adapter'
                          
+# # #
+# # Establish a connection if we have yml parameters
+ActiveSms::Base.establish_connection(ActiveSms::GATEWAY) if ActiveSms::GATEWAY                         
 
 # Simplewire requires jruby
 if RUBY_PLATFORM =~ /java/

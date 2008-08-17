@@ -59,7 +59,6 @@ module ActiveSms #:nodoc#
     # a particular SMS gateway.
     def connection
       self.class.connection
-    end
-    
+    end    
   end
 end
