@@ -71,24 +71,19 @@ module ActiveSms
           :from     => sms.from || @config[:from],
           :msg      => sms.body,      
           :id       => sms.id,
-        }              
-        
+        }                      
         # Human supports scheduling
         # if we got some date, share with em!
         if sms.schedule 
           human_schedule = date_format_human(sms.schedule)
-          params << { :schedule => human_schedule }
-        end 
-        
+          params[:schedule] = human_schedule
+        end         
         # Send it!
         send_http_request(@service_url, params)
-      end     
-      
-      
+      end                 
     end    
   end
-end     
-            
+end                 
 
 # def initialize(logger = nil, config = {})    
 #   super(logger)

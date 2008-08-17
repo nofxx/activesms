@@ -8,7 +8,9 @@ end
 
 $:.unshift(File.dirname(__FILE__) + '/../lib')
 $:.unshift(File.dirname(__FILE__) + '/../lib/activesms')
+$:.unshift(File.dirname(__FILE__) + '/../lib/activesms/connection_adapters')
 require 'activesms'
+require 'activesms/connection_adapters/abstract_adapter'
 include ActiveSms
 
 # #
