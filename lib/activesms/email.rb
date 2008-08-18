@@ -1,8 +1,13 @@
+require 'yaml'
+#require 'activesms/config'
+
 module ActiveSms #:nodoc#   
   module Email
-   # @config ||= CONFIG
-    @@carriers ||= CARRIERS
-    @@from_address ||= CONFIG['from_address']
+    RAILS_CONFIG_ROOT = defined?(RAILS_ROOT) ? "#{RAILS_ROOT}/config" : "#{File.dirname(__FILE__)}/../../generators/sms/templates" unless defined?(RAILS_CONFIG_ROOT)
+    # and load what we have!
+    conf_yml ||= YAML::load(File.open("#{RAILS_CONFIG_ROOT}/sms.yml"))
+    @@carriers ||= conf_yml['carriers']
+    @@from_address ||= conf_yml['config']['from_address']
 
     def carriers
       @@carriers.dup
@@ -14,7 +19,7 @@ module ActiveSms #:nodoc#
       carrier = sms.carrier
       # number = format_number(number)
 
-      #options[:limit] ||= message.length
+      #options[:limit] ||= message.length 
         #options[:from]  ||= @@from_address
       #message = message[0..options[:limit]-1]
       sms_email = determine_sms_email(number, carrier)#format_number(number),carrier)

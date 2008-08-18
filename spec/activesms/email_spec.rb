@@ -22,38 +22,49 @@ describe Email do
       Noter.deliver(sms)
    end
         
-  describe "Instantiated" do
-    before(:each) do
-      @email = Class.new { include ActiveSms::Email }.new
-   # @email = Aa.new
-    end
+  describe "Include Module" do
+    include Email
   
-    it "should be valid" do
-      violated unless @email
+    it "should format number" do
+      stub!(:valid?).and_return(false)
+      format_number('555444').should eql('555555555')
     end
         
     it "should determine a correct email address" do
-      @email.get_sms_address('5543214321', 'tim').should eql('5543214321@tim.com.br')
-      @email.get_sms_address('5543214321', 'oi').should eql('5543214321@sms.oi.com.br')  
+      get_sms_address('5543214321', 'tim').should eql('5543214321@tim.com.br')
+      get_sms_address('5543214321', 'oi').should eql('5543214321@sms.oi.com.br')  
+    end
+    
+    it "should be valid with more than 10 digits" do
+      is_valid?('1234567890').should be_true
+    end
+    
+    it "should be invalid with lesse than 10 digits" do
+      is_valid?('123456789').should_not be_true
     end
         
-    it "should clean the number" do
-      @email.get_sms_address('5-543-2=14321', 'tim').should eql('5543214321@tim.com.br')
-      @email.get_sms_address('55g432g14fd321', 'oi').should eql('5543214321@sms.oi.com.br')  
+    it "should be invalid if it has something that is not a number.. NaN hehe" do
+      is_valid?('123456789a').should_not be_true
+    end
+    
+    it "should clean the number from evil chars" do
+      get_sms_address('5-54g3-2=143h21', 'tim').should eql('5543214321@tim.com.br')     
     end
     
     it "should throw an error if the carrier is not known" do
-      lambda {@email.get_sms_address('5543214321', 'nofxx-telecom')}.should raise_error(ActiveSms::CarrierException)
+      lambda {get_sms_address('5543214321', 'nofxx-telecom')}.should raise_error(ActiveSms::CarrierException)
     end
     
     it "should throw an error if the carrier is blank" do
-      lambda {@email.get_sms_address('5543214321', '')}.should raise_error(ActiveSms::CarrierException)
-    end    
+      lambda {get_sms_address('5543214321', '')}.should raise_error(ActiveSms::CarrierException)
+    end 
+    
+       
             
     describe "Email2Sms" do
       it "should throw an error if the carrier is blank" do
         @sms = ActiveSms::Sms.new
-        lambda {@email.email_deliver(@sms)}.should raise_error(ActiveSms::CarrierException)
+        lambda {email_deliver(@sms)}.should raise_error(ActiveSms::CarrierException)
       end
     end
   end 

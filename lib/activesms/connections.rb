@@ -40,7 +40,6 @@ module ActiveSms #:nodoc#
       # The exceptions AdapterNotSpecified, AdapterNotFound, and ArgumentError
       # may be returned.
       def establish_connection(config) 
-       # config ||= GATEWAY
         config = config.symbolize_keys
         unless config.key?(:adapter)
           raise AdapterNotSpecified, "#{config} adapter is not configured"

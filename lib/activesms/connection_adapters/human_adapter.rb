@@ -74,10 +74,7 @@ module ActiveSms
         }                      
         # Human supports scheduling
         # if we got some date, share with em!
-        if sms.schedule 
-          human_schedule = date_format_human(sms.schedule)
-          params[:schedule] = human_schedule
-        end         
+        params[:schedule] = date_format_human(sms.schedule) if sms.schedule 
         # Send it!
         send_http_request(@service_url, params)
       end                 

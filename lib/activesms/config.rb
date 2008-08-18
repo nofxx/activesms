@@ -9,15 +9,12 @@ module ActiveSms #:nodoc#
     conf_yml ||= YAML::load(File.open("#{RAILS_CONFIG_ROOT}/sms.yml")) 
 
     # #
-    # Get general parameters
+    # # Get general parameters
     CONFIG = conf_yml['config']
     
     # #
     # Get the configured gateway
     GATEWAY = conf_yml['gateway']
-    
-    # #
-    # Get all carriers
-    CARRIERS = conf_yml['carriers']                   
+               
         
 end

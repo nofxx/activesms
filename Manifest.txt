@@ -39,6 +39,7 @@ script/txt2html
 setup.rb
 sms_brasil.gemspec
 spec/activesms/base_spec.rb
+spec/activesms/connection_adapters/abstract_adapter_spec.rb
 spec/activesms/connection_adapters/human_adapter_spec.rb
 spec/activesms/email_spec.rb
 spec/activesms/sms2email_spec.rb
