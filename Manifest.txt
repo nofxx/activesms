@@ -6,8 +6,10 @@ MIT-LICENSE
 Manifest.txt
 README.txt
 Rakefile
+activesms.gemspec
 config/hoe.rb
 config/requirements.rb
+docs/SMS messages and the PDU format.webarchive
 generators/sms/USAGE
 generators/sms/sms_generator.rb
 generators/sms/templates/fixture.rhtml
@@ -37,10 +39,10 @@ script/destroy
 script/generate
 script/txt2html
 setup.rb
-sms_brasil.gemspec
 spec/activesms/base_spec.rb
 spec/activesms/connection_adapters/abstract_adapter_spec.rb
 spec/activesms/connection_adapters/human_adapter_spec.rb
+spec/activesms/connection_adapters/simplewire_spec.rb
 spec/activesms/email_spec.rb
 spec/activesms/sms2email_spec.rb
 spec/activesms/sms_spec.rb
@@ -51,13 +53,4 @@ tasks/deployment.rake
 tasks/environment.rake
 tasks/rspec.rake
 tasks/website.rake
-test/connection_adapters/test_simplewire_adapter.rb
-test/test_activesms.rb
-test/test_helper.rb
 views/active_sms/base/sms2_email/sms_message.html.erb
-website/index.html
-website/index.txt
-website/javascripts/rounded_corners_lite.inc.js
-website/stylesheets/screen.css
-website/template.html.erb
-website/template.rhtml

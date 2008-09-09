@@ -29,7 +29,7 @@ config:
 # EMAIL 2 SMS CARRIERS
 #   
 # Please share if you know more carriers
-# http://github.com/nofxx/sms_brasil
+# http://github.com/nofxx/activesms
 carriers:
    # #
    # Brasil 

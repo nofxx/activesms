@@ -1,6 +1,6 @@
 == SMS Brasil 
 
-* http://github.com/nofxx/brasil_sms
+* http://github.com/nofxx/activesms
 
 
 == DESCRIPTION:
@@ -33,7 +33,7 @@ Baseado no ActiveSMS (http://rubyforge.org/projects/activesms) esse projeto visa
 == INSTALL:
 
   gem sources -a http://gems.github.com
-  sudo gem install nofxx-sms_brasil  
+  sudo gem install nofxx-activesms  
 
   
 == USAGE:
